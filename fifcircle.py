@@ -1,12 +1,12 @@
 import sys
 
-findmajorScale = ["C", "G", "D", "A", "E", "B", "Fis", "Cis", "Gis", "Dis", "Bes", "F"]
-findminorScale = ["A mi", "E mi", "B mi", "Fis mi", "Cis mi", "Gis mi", "Dis mi", "Bes mi", "F mi", "C mi", "G mi", "D mi"]
-finddimisScale = ["B dim", "Fis dim", "Cis dim", "Gis dim", "Dis dim", "Bes dim", "F dim", "C dim", "G dim", "D dim", "A dim", "E dim"]
+findmajorScale = ["C", "G", "D", "A", "E", "H", "Fis", "Cis", "Gis", "Dis", "B", "F"]
+findminorScale = ["A mi", "E mi", "H mi", "Fis mi", "Cis mi", "Gis mi", "Dis mi", "B mi", "F mi", "C mi", "G mi", "D mi"]
+finddimisScale = ["H dim", "Fis dim", "Cis dim", "Gis dim", "Dis dim", "B dim", "F dim", "C dim", "G dim", "D dim", "A dim", "E dim"]
 
 scales = {"scales": [{"name":"ionian",     "index":"majorSidx", "shift": 0}, 
                      {"name":"lydian",     "index":"majorSidx", "shift": 1},
-                     {"name":"myxolidian", "index":"majorSidx", "shift": -1}, 
+                     {"name":"myxolydian", "index":"majorSidx", "shift": -1}, 
                      {"name":"aeonian",    "index":"minorSidx", "shift": 0}, 
                      {"name":"dorian",     "index":"minorSidx", "shift": 1}, 
                      {"name":"phrygian",   "index":"minorSidx", "shift": -1}, 
@@ -26,7 +26,7 @@ minorSidx = findminorScale.index(tone + " mi")
 dimisSidx = finddimisScale.index(tone + " dim")
 
 for i in scales["scales"]:
-  print (i["name"])
+  print (f"\n{i['name']}: \n ---------------")
   idx = eval(i["index"]) + i["shift"]
   if idx > (len(findmajorScale) - 1):
     idx = 0
@@ -47,8 +47,8 @@ for i in scales["scales"]:
   if iright < 0:
     iright = len(findmajorScale) - 1
   
-  print (f"Major:  {findmajorScale[ileft]} - {findmajorScale[idx]} - {findmajorScale[iright]}")
-  print (f"Minor:  {findminorScale[ileft]} - {findminorScale[idx]} - {findminorScale[iright]}")
-  print (f"Dimis:      - {finddimisScale[idx]} - ")
-  
+  print (f"  Major:  {findmajorScale[ileft]:6} - {findmajorScale[idx]:6} - {findmajorScale[iright]:6}")
+  print (f"  Minor:  {findminorScale[ileft]:6} - {findminorScale[idx]:6} - {findminorScale[iright]:6}")
+  print (f"  Dimis:           {finddimisScale[idx]:6}")
+
 
