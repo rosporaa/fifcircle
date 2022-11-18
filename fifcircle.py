@@ -32,13 +32,14 @@ def main():
     print (f"\n@ {i['name']}: \n ---------------")
 
     idx = eval(i["index"]) + i["shift"]
-    ileft  = idx - 1
-    iright = idx + 1
 
     if idx > (len(findmajorScale) - 1):
       idx = 0
     if idx < 0:
       idx = len(findmajorScale) - 1
+
+    ileft  = idx - 1
+    iright = idx + 1
 
     if ileft > (len(findmajorScale) - 1):
       ileft = 0
