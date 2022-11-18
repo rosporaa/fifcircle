@@ -24,33 +24,37 @@ def main():
                       ]
            }
 
-  while True:
-    tone = input("Enter scale name (" + ', '.join(findmajorScale) + ", k-end): ")
-    if tone == 'k':
-      sys.exit(0)
-    if tone in findmajorScale:
-      break
+  try:
+    while True:
+      while True:
+        tone = input("Enter scale name (" + ', '.join(findmajorScale) + ", k-end): ")
+        if tone == 'k':
+          sys.exit(0)
+        if tone in findmajorScale:
+          break
 
-  majorSidx = findmajorScale.index(tone)
-  minorSidx = findminorScale.index(tone + " mi")
-  dimisSidx = finddimisScale.index(tone + " dim")
+      majorSidx = findmajorScale.index(tone)
+      minorSidx = findminorScale.index(tone + " mi")
+      dimisSidx = finddimisScale.index(tone + " dim")
 
-  print (f"\n@@@ Scale {tone} @@@")
+      print (f"\n@@@ Scale {tone} @@@")
 
-  for i in scales["scales"]:
-    print (f"\n@ {i['name']}: \n ---------------")
+      for i in scales["scales"]:
+        print (f"\n@ {i['name']}: \n ---------------")
 
-    idx = eval(i["index"]) + i["shift"]
-    maxIdx = len(findmajorScale) - 1
+        idx = eval(i["index"]) + i["shift"]
+        maxIdx = len(findmajorScale) - 1
 
-    idx = rotateI(idx, maxIdx)
-    ileft  = rotateI(idx - 1, maxIdx)
-    iright = rotateI(idx + 1, maxIdx)
-    
-    print (f"  Major:  {findmajorScale[ileft]:6}   {findmajorScale[idx]:6}   {findmajorScale[iright]:6}")
-    print (f"  Minor:  {findminorScale[ileft]:6}   {findminorScale[idx]:6}   {findminorScale[iright]:6}")
-    print (f"  Dimis:           {finddimisScale[idx]:6}")
-
+        idx = rotateI(idx, maxIdx)
+        ileft  = rotateI(idx - 1, maxIdx)
+        iright = rotateI(idx + 1, maxIdx)
+        
+        print (f"  Major:  {findmajorScale[ileft]:6}   {findmajorScale[idx]:6}   {findmajorScale[iright]:6}")
+        print (f"  Minor:  {findminorScale[ileft]:6}   {findminorScale[idx]:6}   {findminorScale[iright]:6}")
+        print (f"  Dimis:           {finddimisScale[idx]:6}")
+      print ("")
+  except KeyboardInterrupt:
+    pass
 
 if __name__ == "__main__":
     main()
