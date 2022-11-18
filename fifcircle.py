@@ -32,24 +32,25 @@ def main():
     print (f"\n@ {i['name']}: \n ---------------")
 
     idx = eval(i["index"]) + i["shift"]
+    maxIdx  = len(findmajorScale) - 1
 
-    if idx > (len(findmajorScale) - 1):
+    if idx > maxIdx:
       idx = 0
     if idx < 0:
-      idx = len(findmajorScale) - 1
+      idx = maxIdx
 
     ileft  = idx - 1
     iright = idx + 1
 
-    if ileft > (len(findmajorScale) - 1):
+    if ileft > maxIdx:
       ileft = 0
     if ileft < 0:
-      ileft = len(findmajorScale) - 1
+      ileft = maxIdx
 
-    if iright > (len(findmajorScale) - 1):
+    if iright > maxIdx:
       iright = 0
     if iright < 0:
-      iright = len(findmajorScale) - 1
+      iright = maxIdx
     
     print (f"  Major:  {findmajorScale[ileft]:6}   {findmajorScale[idx]:6}   {findmajorScale[iright]:6}")
     print (f"  Minor:  {findminorScale[ileft]:6}   {findminorScale[idx]:6}   {findminorScale[iright]:6}")
