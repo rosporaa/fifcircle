@@ -1,5 +1,14 @@
 import sys
 
+def rotateI(idx, maxIdx):
+  if idx > maxIdx:
+    return 0
+  if idx < 0:
+    return maxIdx
+
+  return idx
+
+
 def main():
   findmajorScale = ["C", "G", "D", "A", "E", "H", "Fis", "Cis", "Gis", "Dis", "B", "F"]
   findminorScale = ["A mi", "E mi", "H mi", "Fis mi", "Cis mi", "Gis mi", "Dis mi", "B mi", "F mi", "C mi", "G mi", "D mi"]
@@ -32,25 +41,11 @@ def main():
     print (f"\n@ {i['name']}: \n ---------------")
 
     idx = eval(i["index"]) + i["shift"]
-    maxIdx  = len(findmajorScale) - 1
+    maxIdx = len(findmajorScale) - 1
 
-    if idx > maxIdx:
-      idx = 0
-    if idx < 0:
-      idx = maxIdx
-
-    ileft  = idx - 1
-    iright = idx + 1
-
-    if ileft > maxIdx:
-      ileft = 0
-    if ileft < 0:
-      ileft = maxIdx
-
-    if iright > maxIdx:
-      iright = 0
-    if iright < 0:
-      iright = maxIdx
+    idx = rotateI(idx, maxIdx)
+    ileft  = rotateI(idx - 1, maxIdx)
+    iright = rotateI(idx + 1, maxIdx)
     
     print (f"  Major:  {findmajorScale[ileft]:6}   {findmajorScale[idx]:6}   {findmajorScale[iright]:6}")
     print (f"  Minor:  {findminorScale[ileft]:6}   {findminorScale[idx]:6}   {findminorScale[iright]:6}")
